@@ -1,0 +1,18 @@
+<table class="custom-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Editora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livrosDataSource">
+        <td>{{ livro.id }}</td>
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.autor }}</td>
+        <td>{{ livro.editora }}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-content class="form-control">
+        <form class="form-container">
+            <div class="form-row">
+                <label class="form-label">Titulo</label>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="livro.nome" name="nome">
+                </mat-form-field>
+            </div>
+            <div class="form-row">
+                <label class="form-label">Editora</label>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="livro.editora" name="editora">
+                </mat-form-field>
+            </div>
+            <div class="form-row">
+                <label class="form-label">Autor</label>
+                <mat-form-field>
+                    <mat-select [(ngModel)]="livro.autor" name="autor">
+                        <mat-option *ngFor="let autor of autores" [value]="autor">{{ autor }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-row">
+                <label class="form-label">Número de Páginas</label>
+                <mat-form-field>
+                    <input matInput type="number" [(ngModel)]="livro.numPaginas" name="numPaginas">
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="primary" (click)="submitForm()">Enviar</button>
+        </form>
+    </mat-card-content>
+</mat-card>
