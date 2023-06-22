@@ -4,6 +4,8 @@ import { HomepageComponent } from './homepage.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input'; // Add this line
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button'; // Importe o MatButtonModule aqui
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { MatInputModule } from '@angular/material/input'; // Add this line
     CommonModule,
     MatToolbarModule,
     MatCardModule,
-    MatInputModule // Add this line
+    MatInputModule,
+    FormsModule,
+    MatButtonModule
   ],
   exports: [
     HomepageComponent

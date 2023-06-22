@@ -1,0 +1,43 @@
+<form class="example-full-width">
+  <mat-form-field appearance="fill">
+    <mat-label>Pesquisar livros</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText" (input)="searchBooks()" placeholder="Digite o título do livro">
+  </mat-form-field>
+  <div class="mat-list">
+    <div class="mat-list-item" *ngFor="let book of searchResults; let i = index">
+      <div class="row">
+        <div class="row">
+          <mat-form-field class="book-input">
+            <input matInput [(ngModel)]="book.titulo" [disabled]="true">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="book-input">
+            <input matInput [(ngModel)]="book.editora" [disabled]="true">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="book-input">
+            <input matInput [(ngModel)]="book.numPaginas" [disabled]="true" type="number">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="book-input">
+            <label>Autor</label>
+            <input matInput [(ngModel)]="book.autor" [disabled]="true">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <button mat-icon-button color="warn" (click)="deleteBook(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div class="row">
+          <button mat-icon-button color="primary" (click)="editBook(i)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
