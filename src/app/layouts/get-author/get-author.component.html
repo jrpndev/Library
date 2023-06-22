@@ -1,17 +1,41 @@
-<table class="custom-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Nacionalidade</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of dataSource">
-        <td>{{ item.id }}</td>
-        <td>{{ item.nome }}</td>
-        <td>{{ item.nacionalidade }}</td>
-      </tr>
-    </tbody>
-  </table>
-  
+<mat-form-field appearance="fill">
+  <mat-label>Pesquisar autores</mat-label>
+  <input matInput type="text" [(ngModel)]="searchText" (input)="searchAuthors()" placeholder="Digite o nome do autor">
+</mat-form-field>
+
+<div class="mat-list">
+  <div class="mat-list-item" *ngFor="let author of dataSource">
+    <div class="row">
+      <div class="row">
+        <mat-form-field class="author-input">
+          <input matInput [(ngModel)]="author.nome" [disabled]="!author.editing">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="author-input">
+          <input matInput [(ngModel)]="author.nacionalidade" [disabled]="!author.editing">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="button-group">
+          <ng-container *ngIf="!author.editing">
+            <button mat-icon-button color="primary" (click)="startEditing(author)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="author.editing">
+            <button mat-icon-button color="primary" (click)="confirmEditing(author)">
+              <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="cancelEditing(author)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </ng-container>
+          <button mat-icon-button color="warn" (click)="deleteAuthor(author)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

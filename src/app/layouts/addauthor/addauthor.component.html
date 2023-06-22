@@ -2,13 +2,13 @@
     <div class="example-column">
         <mat-form-field class="example-full-width">
             <mat-label>Nacionalidade</mat-label>
-            <input matInput placeholder="Ex. Brasil">
+            <input matInput placeholder="Ex. Brasil" [(ngModel)]="autor.nacionalidade" name="nacionalidade">
         </mat-form-field>
     </div>
     <div class="example-column">
         <mat-form-field class="example-full-width">
             <mat-label>Nome</mat-label>
-            <input matInput [(ngModel)]="pessoa.nome" name="nome" placeholder="Ex. João">
+            <input matInput [(ngModel)]="autor.nome" name="nome" placeholder="Ex. João">
         </mat-form-field>
     </div>
     <div class="example-column">

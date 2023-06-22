@@ -4,6 +4,14 @@ import { GetAuthorComponent } from './get-author.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -13,9 +21,16 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     CommonModule,
-    MatTableModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatIconModule,
-    MatInputModule
+    BrowserAnimationsModule,
+    MatOptionModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ]
 })
 export class GetAuthorModule { }

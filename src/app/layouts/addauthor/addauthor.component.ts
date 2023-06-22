@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RequestsService } from 'src/app/services/requests.service';
 
 @Component({
   selector: 'app-addauthor',
@@ -6,12 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./addauthor.component.css']
 })
 export class AddauthorComponent {
-  pessoa = {
-    nacionalidade: '',
-    nome: ''
+
+  constructor(private service : RequestsService){}
+  autor = {
+    "nacionalidade": '',
+    "nome": ''
   };
 
   submitForm() {
-    // Lógica para enviar o formulário
+    this.service.createAuthor(this.autor);
+    console.log(this.autor)
   }
 }

@@ -10,36 +10,21 @@ export class DeletebookComponent implements OnInit {
 
   books = [
     {
+      id: 1,
       titulo: "Livro 1",
       editora: "Editora 1",
       autor: "Autor 1",
-      numPaginas: 100
+      numPaginas: 100,
+      editing: false
     },
-    {
-      titulo: "Livro 2",
-      editora: "Editora 2",
-      autor: "Autor 2",
-      numPaginas: 200
-    },
-    {
-      titulo: "Livro 3",
-      editora: "Editora 3",
-      autor: "Autor 3",
-      numPaginas: 300
-    },
-    {
-      titulo: "Livro 4",
-      editora: "Editora 4",
-      autor: "Autor 4",
-      numPaginas: 400
-    }
+    // Resto do array de livros...
   ];
 
   searchResults: any[] = [];
 
   autores: string[] = ['Autor 1', 'Autor 2', 'Autor 3', 'Autor 4'];
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.searchBooks();
@@ -54,7 +39,16 @@ export class DeletebookComponent implements OnInit {
   deleteBook(index: number) {
     this.books.splice(index, 1);
   }
-  editBook(id : any){
 
+  startEditing(book: any) {
+    book.editing = true;
+  }
+
+  confirmEditing(book: any) {
+    book.editing = false;
+  }
+
+  cancelEditing(book: any) {
+    book.editing = false;
   }
 }

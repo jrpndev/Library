@@ -1,14 +1,13 @@
 <div class="container">
-    <mat-toolbar color="primary">
-      <button mat-button (click)="carregarComponente('Componente1')">Cadastrar Livro</button>
-      <button mat-button (click)="carregarComponente('Componente2')">Consultar livros</button>
-      <button mat-button (click)="carregarComponente('Componente3')">Deletar livros</button>
-      <button mat-button (click)="carregarComponente('Componente4')">Cadastrar autores</button>
-      <button mat-button (click)="carregarComponente('Componente5')">Consultar Autores</button>
-    </mat-toolbar>
-    
-    <div class="content">
-      <ng-container *ngComponentOutlet="componenteAtual"></ng-container>
-    </div>
+
+  <mat-toolbar color="primary">
+    <button mat-button (click)="carregarComponente('Componente1')">Cadastrar Livro</button>
+    <button mat-button (click)="carregarComponente('Componente2')">Consultar livros</button>
+    <button mat-button (click)="carregarComponente('Componente3')">Cadastrar autores</button>
+    <button mat-button (click)="carregarComponente('Componente4')">Consultar Autores</button>
+  </mat-toolbar>
+
+  <div class="content">
+    <ng-container *ngComponentOutlet="componenteAtual"></ng-container>
   </div>
-  
+</div>
