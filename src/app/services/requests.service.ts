@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { author } from '../models/author.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +14,8 @@ export class RequestsService {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  getBooks() {
-    return this.http.get(this.url).subscribe(res => {
-      console.log(res);
-      this.showSnackBar('Consulta de livros bem-sucedida');
-    }, error => {
-      console.error(error);
-      this.showSnackBar('Erro na consulta de livros');
-    });
+  getBooks() : Observable<any[]>{
+    return this.http.get<any[]>(this.url);
   }
 
   createBooks(book: any) {
@@ -27,8 +23,7 @@ export class RequestsService {
       console.log(res);
       this.showSnackBar('Livro criado com sucesso');
     }, error => {
-      console.error(error);
-      this.showSnackBar('Erro ao criar livro');
+      this.showSnackBar('Erro ao criar livro' + error);
     });
   }
 
@@ -37,33 +32,54 @@ export class RequestsService {
       console.log(res);
       this.showSnackBar('Autor criado com sucesso');
     }, error => {
-      console.error(error);
-      this.showSnackBar('Erro ao criar autor');
+      this.showSnackBar('Erro ao criar autor' + error);
     });
   }
 
-  deleteBook(id: any) {
+  deleteBook(id : any) {
     const url = this.url + "/" + id;
     this.http.delete(url).subscribe(res => {
       console.log(res);
       this.showSnackBar('Livro excluído com sucesso');
     }, error => {
-      console.error(error);
-      this.showSnackBar('Erro ao excluir livro');
+      this.showSnackBar('Erro ao excluir livro ' + error);
     });
   }
 
-  getAuthor() {
-    return this.http.get(this.urlAuthor).subscribe(res => {
+  editAuthor(id : any , author : any){
+    const url = this.urlAuthor + "/" + id;
+    this.http.put(url , author).subscribe(res=>{
       console.log(res);
-      this.showSnackBar('Consulta de autores bem-sucedida');
+      this.showSnackBar('Autor atualizado com sucesso!');
+    } , error=>{
+      console.log(error);
+      this.showSnackBar('Erro ao atualizar Autor  + error');
+    })
+  }
+
+  editBook(id : any , book : any){
+    const url = this.url + "/" + id;
+    this.http.put(url , book).subscribe(res=>{
+      this.showSnackBar('Livro atualizado com sucesso!');
+    } , error=>{
+      this.showSnackBar('Erro ao atualizar Livro ' + error);
+    })
+  }
+
+  deleteAuthor(id: any) {
+    const url = this.urlAuthor + "/" + id;
+    this.http.delete(url).subscribe(res => {
+      this.showSnackBar('Autor excluído com sucesso');
     }, error => {
-      console.error(error);
-      this.showSnackBar('Erro na consulta de autores');
+      this.showSnackBar('Erro ao excluir Autor ' + error);
     });
   }
 
-  private showSnackBar(message: string) {
+  getAuthor(): Observable<author[]> {
+    return this.http.get<author[]>(this.urlAuthor);
+  }
+
+  showSnackBar(message: string) {
     this.snackBar.open(message, 'Fechar', { duration: 3000 });
   }
 }

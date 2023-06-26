@@ -18,17 +18,18 @@
       </div>
       <div class="row">
         <mat-form-field class="book-input">
+          <mat-label>Número de páginas</mat-label>
           <input matInput [(ngModel)]="book.numPaginas" [disabled]="!book.editing" type="number">
         </mat-form-field>
       </div>
       <div class="row">
         <mat-form-field class="book-input">
           <label>Autor</label>
-          <input matInput [(ngModel)]="book.autor" [disabled]="!book.editing">
+          <input matInput [(ngModel)]="book.autor.nome" [disabled]="!book.editing">
         </mat-form-field>
       </div>
       <div class="row">
-        <button mat-icon-button color="warn" (click)="deleteBook(i)">
+        <button mat-icon-button color="warn" (click)="deleteBook(book)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

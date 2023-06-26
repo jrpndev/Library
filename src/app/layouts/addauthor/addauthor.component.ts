@@ -16,6 +16,5 @@ export class AddauthorComponent {
 
   submitForm() {
     this.service.createAuthor(this.autor);
-    console.log(this.autor)
   }
 }

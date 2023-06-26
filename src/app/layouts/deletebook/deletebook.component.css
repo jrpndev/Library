@@ -1,17 +1,16 @@
-mat-form-field {
-    width: 300px;
-  }
-  
-  .mat-list-item {
-    cursor: pointer;
-  }
-  
-  .row {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .book-input {
-    margin-right: 10px;
-  }
-  
+.mat-form-field {
+  width: 200px; /* Reduza o tamanho dos inputs de dados conforme necessário */
+}
+
+.mat-list-item {
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.book-input {
+  margin-right: 10px;
+}

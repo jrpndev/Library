@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { RequestsService } from 'src/app/services/requests.service';
 
 @Component({
   selector: 'app-deletebook',
@@ -7,26 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeletebookComponent implements OnInit {
   searchText: string = '';
-
-  books = [
-    {
-      id: 1,
-      titulo: "Livro 1",
-      editora: "Editora 1",
-      autor: "Autor 1",
-      numPaginas: 100,
-      editing: false
-    },
-    // Resto do array de livros...
-  ];
-
+  books: any[] = [];
   searchResults: any[] = [];
-
   autores: string[] = ['Autor 1', 'Autor 2', 'Autor 3', 'Autor 4'];
 
-  constructor() { }
+  constructor(
+    private service: RequestsService,
+    private dialog: MatDialog
+  ) {}
+
+  loadBooks() {
+    this.service.getBooks().subscribe(
+      res => {
+        this.books = res;
+        this.searchResults = this.books;
+        this.service.showSnackBar('Livros carregados com sucesso');
+      },
+      err => {
+        this.service.showSnackBar('Erro ao carregar Livros ' + err);
+      }
+    );
+  }
 
   ngOnInit(): void {
+    this.loadBooks();
     this.searchBooks();
   }
 
@@ -36,8 +43,21 @@ export class DeletebookComponent implements OnInit {
     );
   }
 
-  deleteBook(index: number) {
-    this.books.splice(index, 1);
+  deleteBook(book: any) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'Tem certeza que deseja excluir o livro?',
+        buttonText: {
+          ok: 'Sim',
+          cancel: 'Cancelar'
+        }
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.deleteBook(book._id);
+      }
+    });
   }
 
   startEditing(book: any) {
@@ -45,7 +65,7 @@ export class DeletebookComponent implements OnInit {
   }
 
   confirmEditing(book: any) {
-    book.editing = false;
+    this.service.editBook(book._id, book);
   }
 
   cancelEditing(book: any) {

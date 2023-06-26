@@ -1,31 +1,32 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="livroForm">
     <div class="example-column">
-        <mat-form-field class="example-full-width">
-            <mat-label>Título</mat-label>
-            <input matInput placeholder="Ex. Harry Potter">
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" placeholder="Ex. Harry Potter">
+      </mat-form-field>
     </div>
     <div class="example-column">
-        <mat-form-field class="example-full-width">
-            <mat-label>Editora</mat-label>
-            <input matInput [(ngModel)]="livro.editora" name="editora" placeholder="Ex. Rocco">
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Editora</mat-label>
+        <input matInput formControlName="editora" placeholder="Ex. Rocco">
+      </mat-form-field>
     </div>
     <div class="example-column">
-        <mat-form-field class="example-full-width">
-            <mat-label>Autor</mat-label>
-            <mat-select [(ngModel)]="livro.autor" name="autor">
-                <mat-option *ngFor="let autor of autores" [value]="autor">{{ autor }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Autor</mat-label>
+        <mat-select formControlName="autor" placeholder="Selecione um autor">
+          <mat-option *ngFor="let autor of autores" [value]="autor">{{ autor.nome }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="example-column">
-        <mat-form-field class="example-full-width">
-            <mat-label>Número de Páginas</mat-label>
-            <input matInput type="number" [(ngModel)]="livro.numPaginas" name="numPaginas" placeholder="Ex. 350">
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Número de Páginas</mat-label>
+        <input matInput type="number" formControlName="numPaginas" placeholder="Ex. 350">
+      </mat-form-field>
     </div>
     <div class="example-column">
-        <button mat-raised-button color="primary" (click)="submitForm()">Enviar</button>
+      <button mat-raised-button color="primary" (click)="submitForm()">Enviar</button>
     </div>
-</form>
+  </form>
+  

@@ -5,10 +5,8 @@
 
 .mat-toolbar {
   background-color: #283593;
-  /* Cor de fundo personalizada */
+  width: 200px;
   color: #fff;
-  /* Cor do texto personalizada */
-  width: 10%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -16,7 +14,6 @@
   align-items: flex-start;
   padding: 16px;
 }
-
 .content {
   flex: 1;
   padding: 16px;
