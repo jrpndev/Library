@@ -23,6 +23,9 @@ export class DeletebookComponent implements OnInit {
     this.service.getBooks().subscribe(
       res => {
         this.books = res;
+        this.books.forEach(book => {
+          book.autor = book.autor._id; // Adicione esta linha para definir o valor correto de book.autor
+        });
         this.searchResults = this.books;
         this.service.showSnackBar('Livros carregados com sucesso');
       },
@@ -31,6 +34,7 @@ export class DeletebookComponent implements OnInit {
       }
     );
   }
+  
 
   loadAuthors() {
     this.service.getAuthor().subscribe(
