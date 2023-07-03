@@ -20,7 +20,6 @@ export class RequestsService {
 
   createBooks(book: any) {
     this.http.post(this.url, book).subscribe(res => {
-      console.log(res);
       this.showSnackBar('Livro criado com sucesso');
     }, error => {
       this.showSnackBar('Erro ao criar livro' + error);
@@ -53,7 +52,7 @@ export class RequestsService {
       this.showSnackBar('Autor atualizado com sucesso!');
     } , error=>{
       console.log(error);
-      this.showSnackBar('Erro ao atualizar Autor  + error');
+      this.showSnackBar('Erro ao atualizar Autor' + error);
     })
   }
 
@@ -64,6 +63,7 @@ export class RequestsService {
     } , error=>{
       this.showSnackBar('Erro ao atualizar Livro ' + error);
     })
+
   }
 
   deleteAuthor(id: any) {

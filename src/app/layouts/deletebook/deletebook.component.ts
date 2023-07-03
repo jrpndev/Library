@@ -12,12 +12,12 @@ export class DeletebookComponent implements OnInit {
   searchText: string = '';
   books: any[] = [];
   searchResults: any[] = [];
-  autores: string[] = ['Autor 1', 'Autor 2', 'Autor 3', 'Autor 4'];
+  autores: any[] = []; // Alteração: Altere o tipo do array para any[]
 
   constructor(
     private service: RequestsService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   loadBooks() {
     this.service.getBooks().subscribe(
@@ -32,9 +32,21 @@ export class DeletebookComponent implements OnInit {
     );
   }
 
+  loadAuthors() {
+    this.service.getAuthor().subscribe(
+      res => {
+        this.autores = res; // Alteração: Atribua o resultado diretamente ao array autores
+      },
+      error => {
+        this.service.showSnackBar('Erro ao carregar autores ' + error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.loadBooks();
     this.searchBooks();
+    this.loadAuthors();
   }
 
   searchBooks() {
@@ -65,7 +77,9 @@ export class DeletebookComponent implements OnInit {
   }
 
   confirmEditing(book: any) {
+
     this.service.editBook(book._id, book);
+
   }
 
   cancelEditing(book: any) {
